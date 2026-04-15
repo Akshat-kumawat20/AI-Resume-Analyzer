@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Resume Analyzer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Resume Analyzer</h1>
+      <p class="subtitle">AI-powered ATS analysis for your resume</p>
+    </header>
+
+    <div class="card input-card">
+      <div class="upload-area" id="uploadArea">
+        <div class="upload-icon"></div>
+        <p>Drag &amp; drop your resume here</p>
+        <p class="upload-hint">Supports PDF and DOCX</p>
+        <label class="btn btn-outline" for="fileInput">Browse File</label>
+        <input type="file" id="fileInput" accept=".pdf,.docx" hidden />
+      </div>
+      <div class="file-info" id="fileInfo" hidden>
+        <span class="file-icon"></span>
+        <span id="fileName"></span>
+        <button class="btn-icon" id="removeFile" title="Remove file"></button>
+      </div>
+
+      <div class="form-group">
+        <label for="targetRole">Target Role</label>
+        <input type="text" id="targetRole" placeholder="e.g. Senior Frontend Engineer, Data Scientist..." />
+      </div>
+<button class="btn btn-primary" id="analyzeBtn" disabled>Analyze Resume</button>
+    </div>
+
+    <div id="loadingState" class="loading-state" hidden>
+      <div class="spinner"></div>
+      <p>Agent is analyzing your resume...</p>
+    </div>
+
+    <div id="agentSteps" class="agent-steps"></div>
+
+    <div id="errorState" class="error-state" hidden>
+      <span class="error-icon"></span>
+      <p id="errorMsg"></p>
+    </div>
+
+    <div id="noticeBar" class="notice-bar" hidden></div>
+    <div id="results" hidden>
+      <div class="ats-banner card">
+        <div class="ats-score-ring">
+          <svg viewBox="0 0 120 120">
+            <circle class="ring-bg" cx="60" cy="60" r="50"/>
+            <circle class="ring-fill" id="scoreRing" cx="60" cy="60" r="50"/>
+          </svg>
+          <div class="ats-score-text">
+            <span id="atsScore">0</span>
+            <small>/100</small>
+          </div>
+        </div>
+        <div class="ats-info">
+          <h2>ATS Score</h2>
+          <p id="atsLabel"></p>
+        </div>
+      </div>
+
+      <div class="results-grid">
+
+        <div class="card result-card">
+          <h3><span class="icon"></span> Strengths</h3>
+          <ul id="strengths"></ul>
+        </div>
+
+        <div class="card result-card">
+          <h3><span class="icon"></span> Weaknesses</h3>
+          <ul id="weaknesses"></ul>
+        </div>
+
+        <div class="card result-card skills-card">
+          <h3><span class="icon"></span> Skills Found</h3>
+          <div id="skills" class="tags"></div>
+        </div>
+
+        <div class="card result-card skills-card">
+          <h3><span class="icon"></span> Missing Skills</h3>
+          <div id="missingSkills" class="tags missing"></div>
+        </div>
+
+        <div class="card result-card full-width">
+          <h3><span class="icon"></span> Suggestions</h3>
+          <ul id="suggestions"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="index.js"></script>
+</body>
+</html>
+
+
+
+
+
+
